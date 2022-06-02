@@ -1,10 +1,13 @@
+import 'package:desktop_deshboard/teacher/add%20_teacher_form.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import '../navigation_bar.dart';
 import '../student/add_student_form.dart';
 import 'forget_page.dart';
 import 'login_constant.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String id = "login-screen";
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -197,7 +200,8 @@ class LoginScreen extends StatelessWidget {
                               onPressed: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) => AddStudentForm()),
+                                      builder: (context) =>
+                                          const NavigationSide()),
                                 );
                               },
                               child: const Text('LOG IN',

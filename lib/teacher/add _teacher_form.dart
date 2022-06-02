@@ -1,12 +1,16 @@
+import 'package:desktop_deshboard/teacher/teacher_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import '../student/add_student_form.dart';
 import 'constant.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
+import 'list_of_teacher.dart';
+
 class AddTeacherForm extends StatefulWidget {
   const AddTeacherForm({Key? key}) : super(key: key);
-
+  static const String id = "add-teacher-form";
   @override
   _AddTeacherFormState createState() => _AddTeacherFormState();
 }
@@ -46,126 +50,14 @@ class _AddTeacherFormState extends State<AddTeacherForm> {
 
   @override
   Widget build(BuildContext context) {
-    return AdminScaffold(
-      sideBar: SideBar(
-        //===== borderColor
-        borderColor: backgroundcolor,
-        //=====background color
-        backgroundColor: backgroundcolor,
-        //====text and fontsize
-        textStyle: const TextStyle(
-          color: textcolor,
-          fontSize: textsize1,
-        ),
-        iconColor: iconcolor,
-
-        items: const [
-          //=======teacher................
-          MenuItem(
-            title: 'Teacher',
-            children: [
-              MenuItem(
-                title: 'All Taecher',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Profile',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Add Teacher',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-          //====student..........
-          MenuItem(
-            title: 'Student',
-            children: [
-              MenuItem(
-                title: 'All Student',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Student Details',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Admit Form',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-        ],
-        selectedRoute: '/',
-        onSelected: (item) {
-          if (item.route != null) {
-            Navigator.of(context).pushNamed(item.route!);
-          }
-        },
-        header: Container(
-          height: 180,
-          width: double.infinity,
-          color: backgroundcolor,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.dashboard,
-                      size: headingsize,
-                      color: textcolor,
-                    ),
-                    RichText(
-                      text: const TextSpan(
-                        text: "Dashboard ",
-                        style: TextStyle(
-                          fontSize: headingsize1,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 76.0,
-                        ),
-                        child: Image.asset("images/logo.png"),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 74.0, top: 12),
-                        child: Text(
-                          "School name",
-                          style: TextStyle(color: textcolor),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: Stack(
-        fit: StackFit.expand,
+    return Material(
+      color: backgroundcolor3,
+      child: Stack(
+        //  fit: StackFit.expand,
         children: [
+          //SelectedScreen,
           Container(
-            color: backgroundcolor1,
+            // color: backgroundcolor1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -206,7 +98,7 @@ class _AddTeacherFormState extends State<AddTeacherForm> {
                 ),
               ),
               child: Stack(
-                fit: StackFit.expand,
+                // fit: StackFit.expand,
                 children: [
                   //===========first line
                   const Padding(
@@ -222,7 +114,7 @@ class _AddTeacherFormState extends State<AddTeacherForm> {
                     child: Card(
                       color: backgroundcolor2,
                       margin: const EdgeInsets.only(
-                          left: 30, right: 70, bottom: 16, top: 20),
+                          left: 30, right: 50, bottom: 32, top: 10),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
@@ -474,7 +366,7 @@ class _AddTeacherFormState extends State<AddTeacherForm> {
                                             ),
                                             itemPadding: const EdgeInsets.only(
                                                 left: 14, right: 14),
-                                            dropdownWidth: 312,
+                                            dropdownWidth: 318,
                                             dropdownMaxHeight: 150,
                                             dropdownDecoration: BoxDecoration(
                                               borderRadius:
@@ -552,7 +444,7 @@ class _AddTeacherFormState extends State<AddTeacherForm> {
                                             ),
                                             itemPadding: const EdgeInsets.only(
                                                 left: 14, right: 14),
-                                            dropdownWidth: 312,
+                                            dropdownWidth: 318,
                                             dropdownMaxHeight: 150,
                                             dropdownDecoration: BoxDecoration(
                                               borderRadius:
@@ -876,6 +768,9 @@ class _AddTeacherFormState extends State<AddTeacherForm> {
                               ),
                             ],
                           ),
+                          SizedBox(
+                            height: 20,
+                          )
                         ],
                       ),
 

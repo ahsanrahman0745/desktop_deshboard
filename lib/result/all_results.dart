@@ -2,25 +2,22 @@ import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:desktop_deshboard/class_routine/class_routine_constant.dart';
+import 'package:desktop_deshboard/result/results_constant.dart';
 import 'package:responsive_table/responsive_table.dart';
 
-class StudentRoutine extends StatefulWidget {
-  static const String id = "student-routine";
-  const StudentRoutine({Key? key}) : super(key: key);
-
+class AllResults extends StatefulWidget {
+  const AllResults({Key? key}) : super(key: key);
+  static const String id = "all-results";
   @override
-  State<StudentRoutine> createState() => _StudentRoutineState();
+  State<AllResults> createState() => _AllResultsState();
 }
 
-class _StudentRoutineState extends State<StudentRoutine> {
-  //===============================for student ROutine
+class _AllResultsState extends State<AllResults> {
+  //===============================for all_results
   //==========select class
-  String? selectedClassRoutine;
-  List<String> selectclassroutine = [
+  String? selectedResultClass;
+  List<String> resultClass = [
     'Item1',
     'Item2',
     'Item3',
@@ -30,30 +27,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
     'Item7',
     'Item8',
   ];
-  //==========select Day
-  String? selectedDay;
-  List<String> selectday = [
-    'I1',
-    'I2',
-    'I3',
-    'I4',
-    'I5',
-    'I6',
-    'I7',
-    'I8',
-  ];
-  //=================Select select time
-  String? selectedTime;
-  List<String> selecttime = [
-    'sh1',
-    'sh2',
-    'sh3',
-    'sh4',
-    'sh5',
-    'sh6',
-    'sh7',
-    'sh8',
-  ];
+
   //==========================
   late List<DatatableHeader> _headers;
 
@@ -218,9 +192,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
   //=========================
   @override
   Widget build(BuildContext context) {
-    return
-        //============================= form start.........
-        Material(
+    return Material(
       color: backgroundcolor4,
       child: Stack(
         //  fit: StackFit.expand,
@@ -235,7 +207,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                   child: Column(
                     children: const [
                       AutoSizeText(
-                        "Class Routine",
+                        "Results",
                         style: TextStyle(
                             color: headingcolor1,
                             fontSize: headingsize2,
@@ -276,7 +248,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                   const Padding(
                     padding: EdgeInsets.only(left: 50, top: 10),
                     child: Text(
-                      "home > students routine",
+                      "home > result",
                       style: TextStyle(fontSize: textsize, color: textcolor1),
                     ),
                   ),
@@ -314,13 +286,11 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       //====first line
-                                      const Center(
-                                        child: Text(
-                                          "Manage Students Routine",
-                                          style: TextStyle(
-                                            color: headingcolor1,
-                                            fontSize: textsize6,
-                                          ),
+                                      const Text(
+                                        "  Add result",
+                                        style: TextStyle(
+                                          color: headingcolor1,
+                                          fontSize: textsize6,
                                         ),
                                       ),
                                       //===========divider line
@@ -335,7 +305,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                       const Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text(
-                                          "Subject Name",
+                                          "Exam Name",
                                           style: TextStyle(fontSize: textsize5),
                                         ),
                                       ),
@@ -364,7 +334,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                       const Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text(
-                                          "Teacher Name",
+                                          "Student Name",
                                           style: TextStyle(fontSize: textsize5),
                                         ),
                                       ),
@@ -416,7 +386,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                                 ),
                                               ],
                                             ),
-                                            items: selectclassroutine
+                                            items: resultClass
                                                 .map((item) =>
                                                     DropdownMenuItem<String>(
                                                       value: item,
@@ -429,10 +399,10 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                                       ),
                                                     ))
                                                 .toList(),
-                                            value: selectedClassRoutine,
+                                            value: selectedResultClass,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedClassRoutine =
+                                                selectedResultClass =
                                                     value as String;
                                               });
                                             },
@@ -468,70 +438,25 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                       const Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text(
-                                          "Select Day",
+                                          "Total Marks",
                                           style: TextStyle(fontSize: textsize5),
                                         ),
                                       ),
                                       Container(
                                         margin: const EdgeInsets.fromLTRB(
                                             20, 4, 20, 0),
-                                        child: DropdownButtonHideUnderline(
-                                          child: DropdownButton2(
-                                            isExpanded: true,
-                                            hint: Row(
-                                              children: const [
-                                                Expanded(
-                                                  child: Text(
-                                                    'Select Day',
-                                                    style: TextStyle(
-                                                      fontSize: textsize5,
-                                                      color: textcolor1,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            items: selectday
-                                                .map((item) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style: const TextStyle(
-                                                          fontSize: textsize,
-                                                          color: textcolor1,
-                                                        ),
-                                                      ),
-                                                    ))
-                                                .toList(),
-                                            value: selectedDay,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                selectedDay = value as String;
-                                              });
-                                            },
-                                            buttonHeight: 32,
-                                            buttonWidth: 320,
-                                            buttonPadding:
-                                                const EdgeInsets.only(
-                                                    left: 14, right: 14),
-                                            buttonDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              border: Border.all(
-                                                color: boder1,
-                                              ),
-                                              color: textcolor,
-                                            ),
-                                            itemPadding: const EdgeInsets.only(
-                                                left: 14, right: 14),
-                                            dropdownWidth: 220,
-                                            dropdownMaxHeight: 150,
-                                            dropdownDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              color: textcolor,
-                                            ),
+                                        child: TextField(
+                                          showCursor: false,
+                                          cursorColor: textcolor1,
+                                          decoration: InputDecoration(
+                                            fillColor: textcolor,
+                                            filled: true,
+                                            isDense: true,
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 8),
+                                            enabledBorder: myinputborder(),
+                                            focusedBorder: myfocusborder(),
                                           ),
                                         ),
                                       ),
@@ -542,70 +467,25 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                       const Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text(
-                                          "Select  Time",
+                                          "Obtained Marks",
                                           style: TextStyle(fontSize: textsize5),
                                         ),
                                       ),
                                       Container(
                                         margin: const EdgeInsets.fromLTRB(
                                             20, 4, 20, 0),
-                                        child: DropdownButtonHideUnderline(
-                                          child: DropdownButton2(
-                                            isExpanded: true,
-                                            hint: Row(
-                                              children: const [
-                                                Expanded(
-                                                  child: Text(
-                                                    'Select select time',
-                                                    style: TextStyle(
-                                                      fontSize: textsize5,
-                                                      color: textcolor1,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            items: selecttime
-                                                .map((item) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style: const TextStyle(
-                                                          fontSize: textsize,
-                                                          color: textcolor1,
-                                                        ),
-                                                      ),
-                                                    ))
-                                                .toList(),
-                                            value: selectedTime,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                selectedTime = value as String;
-                                              });
-                                            },
-                                            buttonHeight: 32,
-                                            buttonWidth: 320,
-                                            buttonPadding:
-                                                const EdgeInsets.only(
-                                                    left: 14, right: 14),
-                                            buttonDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              border: Border.all(
-                                                color: boder1,
-                                              ),
-                                              color: textcolor,
-                                            ),
-                                            itemPadding: const EdgeInsets.only(
-                                                left: 14, right: 14),
-                                            dropdownWidth: 220,
-                                            dropdownMaxHeight: 150,
-                                            dropdownDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              color: textcolor,
-                                            ),
+                                        child: TextField(
+                                          showCursor: false,
+                                          cursorColor: textcolor1,
+                                          decoration: InputDecoration(
+                                            fillColor: textcolor,
+                                            filled: true,
+                                            isDense: true,
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 8),
+                                            enabledBorder: myinputborder(),
+                                            focusedBorder: myfocusborder(),
                                           ),
                                         ),
                                       ),
@@ -661,7 +541,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                         padding:
                                             EdgeInsets.fromLTRB(10, 5, 0, 0),
                                         child: Text(
-                                          "Add Routine File",
+                                          "Add Result File",
                                           style: TextStyle(
                                             color: textcolor2,
                                             fontSize: textsize1,
@@ -745,7 +625,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                       const Padding(
                                         padding: EdgeInsets.only(left: 20),
                                         child: Text(
-                                          "Student Routine",
+                                          "Result List",
                                           style: TextStyle(fontSize: textsize4),
                                         ),
                                       ),
@@ -799,7 +679,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                               print("TextButton1");
                                             },
                                             child: const Text(
-                                              'Search By Day',
+                                              'Roll Type Here',
                                               style: TextStyle(
                                                   fontSize: textsize3),
                                             ),
@@ -857,7 +737,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                               print("TextButton1");
                                             },
                                             child: const Text(
-                                              'Search Class',
+                                              'Type Section',
                                               style: TextStyle(
                                                   fontSize: textsize3),
                                             ),

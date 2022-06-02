@@ -6,7 +6,7 @@ import 'package:desktop_deshboard/promote_class/promote_class_constant.dart';
 
 class PromoteClass extends StatefulWidget {
   const PromoteClass({Key? key}) : super(key: key);
-
+  static const String id = "promote-class";
   @override
   State<PromoteClass> createState() => _PromoteClassState();
 }
@@ -63,134 +63,13 @@ class _PromoteClassState extends State<PromoteClass> {
   ];
   @override
   Widget build(BuildContext context) {
-    return AdminScaffold(
-      sideBar: SideBar(
-        //===== borderColor
-        borderColor: backgroundcolor,
-        //=====background color
-        backgroundColor: backgroundcolor,
-        //====text and fontsize
-        textStyle: const TextStyle(
-          color: textcolor,
-          fontSize: textsize1,
-        ),
-        iconColor: Colors.black,
-
-        items: const [
-          //=======teacher................
-          MenuItem(
-            title: 'Teacher',
-            children: [
-              MenuItem(
-                title: 'All Taecher',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Profile',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Add Teacher',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-          //====student..........
-          MenuItem(
-            title: 'Student',
-            children: [
-              MenuItem(
-                title: 'All Student',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Student Details',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Admit Form',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-        ],
-        selectedRoute: '/',
-        onSelected: (item) {
-          if (item.route != null) {
-            Navigator.of(context).pushNamed(item.route!);
-          }
-        },
-        header: Container(
-          height: 180,
-          width: double.infinity,
-          color: backgroundcolor,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.dashboard,
-                      size: headingsize,
-                      color: textcolor,
-                    ),
-                    RichText(
-                      text: const TextSpan(
-                        text: "Dashboard ",
-                        style: TextStyle(
-                          fontSize: headingsize1,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 76.0,
-                        ),
-                        child: Image.asset("images/logo.png"),
-                        // CircleAvatar(
-                        //   // radius: 40.0,
-                        //   backgroundImage: AssetImage(
-                        //     "images/logo.png",
-                        //   ),
-                        // ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 74.0, top: 12),
-                        child: Text(
-                          "School name",
-                          style: TextStyle(color: textcolor),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      //============================= form start.........
-
-      body: Stack(
-        fit: StackFit.expand,
+    return Material(
+      color: backgroundcolor4,
+      child: Stack(
+        // fit: StackFit.expand,
         children: [
           Container(
-            color: backgroundcolor1,
+            //  color: backgroundcolor1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -223,7 +102,7 @@ class _PromoteClassState extends State<PromoteClass> {
                 ),
               ),
               child: Stack(
-                fit: StackFit.expand,
+                //    fit: StackFit.expand,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -246,7 +125,7 @@ class _PromoteClassState extends State<PromoteClass> {
                       elevation: 8,
                       color: backgroundcolor3,
                       margin: const EdgeInsets.only(
-                          left: 40, right: 40, bottom: 350, top: 20),
+                          left: 40, right: 40, bottom: 350, top: 0),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(20),
@@ -274,7 +153,7 @@ class _PromoteClassState extends State<PromoteClass> {
                           ),
                           //=====================firs row of dropdown button
                           Padding(
-                            padding: const EdgeInsets.only(top: 30),
+                            padding: const EdgeInsets.only(top: 30, bottom: 30),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -599,12 +478,12 @@ class _PromoteClassState extends State<PromoteClass> {
                   ),
                   //======================button add
                   Padding(
-                    padding: const EdgeInsets.only(left: 40),
+                    padding: const EdgeInsets.only(left: 40, top: 260),
                     child: Row(
                       children: [
                         SizedBox(
                           height: 40,
-                          width: 130,
+                          width: 120,
                           child: Card(
                             shape: RoundedRectangleBorder(
                               side: const BorderSide(
