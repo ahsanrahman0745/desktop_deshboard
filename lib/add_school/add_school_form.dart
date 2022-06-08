@@ -16,121 +16,121 @@ class _AddSchoolFormState extends State<AddSchoolForm> {
   Widget build(BuildContext context) {
     return AdminScaffold(
       backgroundColor: backgroundcolor,
-      sideBar: SideBar(
-        //===== borderColor
-        borderColor: backgroundcolor,
-        //=====background color
-        backgroundColor: backgroundcolor,
-        //====text and fontsize
-        textStyle: const TextStyle(
-          color: textcolor,
-          fontSize: textsize1,
-        ),
-        iconColor: Colors.black,
-
-        items: const [
-          //=======teacher................
-          MenuItem(
-            title: 'Teacher',
-            children: [
-              MenuItem(
-                title: 'All Taecher',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Profile',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Add Teacher',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-          //====student..........
-          MenuItem(
-            title: 'Student',
-            children: [
-              MenuItem(
-                title: 'All Student',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Student Details',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Admit Form',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-        ],
-        selectedRoute: '/',
-        onSelected: (item) {
-          if (item.route != null) {
-            Navigator.of(context).pushNamed(item.route!);
-          }
-        },
-        header: Container(
-          height: 180,
-          width: double.infinity,
-          color: backgroundcolor,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.dashboard,
-                      size: headingsize,
-                      color: textcolor,
-                    ),
-                    RichText(
-                      text: const TextSpan(
-                        text: "Dashboard ",
-                        style: TextStyle(
-                          fontSize: headingsize1,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 76.0,
-                        ),
-                        child: Image.asset("images/logo.png"),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 74.0, top: 12),
-                        child: Text(
-                          "School name",
-                          style: TextStyle(color: textcolor),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      //============================= form start.........
+      // sideBar: SideBar(
+      //   //===== borderColor
+      //   borderColor: backgroundcolor,
+      //   //=====background color
+      //   backgroundColor: backgroundcolor,
+      //   //====text and fontsize
+      //   textStyle: const TextStyle(
+      //     color: textcolor,
+      //     fontSize: textsize1,
+      //   ),
+      //   iconColor: Colors.black,
+      //
+      //   items: const [
+      //     //=======teacher................
+      //     MenuItem(
+      //       title: 'Teacher',
+      //       children: [
+      //         MenuItem(
+      //           title: 'All Taecher',
+      //           icon: Icons.person_add_alt_1_outlined,
+      //           //  route: '/secondLevelItem1',
+      //         ),
+      //         MenuItem(
+      //           title: 'Profile',
+      //           icon: Icons.person_add_alt_1_outlined,
+      //           //route: '/secondLevelItem2',
+      //         ),
+      //         MenuItem(
+      //           title: 'Add Teacher',
+      //           icon: Icons.person_add_alt_1_outlined,
+      //           //route: '/secondLevelItem2',
+      //         ),
+      //       ],
+      //     ),
+      //     //====student..........
+      //     MenuItem(
+      //       title: 'Student',
+      //       children: [
+      //         MenuItem(
+      //           title: 'All Student',
+      //           icon: Icons.person_add_alt_1_outlined,
+      //           //  route: '/secondLevelItem1',
+      //         ),
+      //         MenuItem(
+      //           title: 'Student Details',
+      //           icon: Icons.person_add_alt_1_outlined,
+      //           //route: '/secondLevelItem2',
+      //         ),
+      //         MenuItem(
+      //           title: 'Admit Form',
+      //           icon: Icons.person_add_alt_1_outlined,
+      //           //route: '/secondLevelItem2',
+      //         ),
+      //       ],
+      //     ),
+      //   ],
+      //   selectedRoute: '/',
+      //   onSelected: (item) {
+      //     if (item.route != null) {
+      //       Navigator.of(context).pushNamed(item.route!);
+      //     }
+      //   },
+      //   header: Container(
+      //     height: 180,
+      //     width: double.infinity,
+      //     color: backgroundcolor,
+      //     child: Column(
+      //       children: [
+      //         Padding(
+      //           padding: const EdgeInsets.all(10.0),
+      //           child: Row(
+      //             children: [
+      //               const Icon(
+      //                 Icons.dashboard,
+      //                 size: headingsize,
+      //                 color: textcolor,
+      //               ),
+      //               RichText(
+      //                 text: const TextSpan(
+      //                   text: "Dashboard ",
+      //                   style: TextStyle(
+      //                     fontSize: headingsize1,
+      //                     // fontWeight: FontWeight.bold,
+      //                   ),
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //         Row(
+      //           children: [
+      //             Column(
+      //               children: [
+      //                 Padding(
+      //                   padding: const EdgeInsets.only(
+      //                     left: 76.0,
+      //                   ),
+      //                   child: Image.asset("images/logo.png"),
+      //                 ),
+      //                 const Padding(
+      //                   padding: EdgeInsets.only(left: 74.0, top: 12),
+      //                   child: Text(
+      //                     "School name",
+      //                     style: TextStyle(color: textcolor),
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //           ],
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      //  ============================= form start.........
       body: Stack(
         fit: StackFit.expand,
         children: [

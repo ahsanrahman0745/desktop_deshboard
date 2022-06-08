@@ -9,6 +9,9 @@ const backgroundcolor3 = Color(0xffffffff);
 const textcolor = Color(0xffffffff);
 const textcolor1 = Color(0xff000000);
 const textcolor2 = Color(0xff396EB0);
+const textcolor3 = Color(0xff00144F);
+const textcolor4 = Color(0xff14FF00);
+const textcolor5 = Color(0xffF04E09);
 
 const headingcolor = Color(0xff000000);
 const headingcolor1 = Color(0xff396EB0);
@@ -26,8 +29,10 @@ const double textsize2 = 11;
 const double textsize3 = 12;
 const double textsize4 = 24;
 const double textsize5 = 10;
+const double textsize6 = 20;
 
 const double headingsize = 40;
 const double headingsize1 = 22;
 const double headingsize2 = 30;
 const double headingsize3 = 48;
+const double headingsize4 = 32;

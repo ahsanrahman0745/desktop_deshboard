@@ -5,7 +5,7 @@ import 'constant.dart';
 
 class TeacherProfile extends StatefulWidget {
   const TeacherProfile({Key? key}) : super(key: key);
-
+  static const String id = "teacher-profile";
   @override
   State<TeacherProfile> createState() => _TeacherProfileState();
 }
@@ -13,133 +13,13 @@ class TeacherProfile extends StatefulWidget {
 class _TeacherProfileState extends State<TeacherProfile> {
   @override
   Widget build(BuildContext context) {
-    return AdminScaffold(
-      sideBar: SideBar(
-        //===== borderColor
-        borderColor: backgroundcolor,
-        //=====background color
-        backgroundColor: backgroundcolor,
-        //====text and fontsize
-        textStyle: const TextStyle(
-          color: textcolor,
-          fontSize: textsize1,
-        ),
-        iconColor: Colors.black,
-
-        items: const [
-          //=======teacher................
-          MenuItem(
-            title: 'Teacher',
-            children: [
-              MenuItem(
-                title: 'All Taecher',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Profile',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Add Teacher',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-          //====student..........
-          MenuItem(
-            title: 'Student',
-            children: [
-              MenuItem(
-                title: 'All Student',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Student Details',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Admit Form',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-        ],
-        selectedRoute: '/',
-        onSelected: (item) {
-          if (item.route != null) {
-            Navigator.of(context).pushNamed(item.route!);
-          }
-        },
-        header: Container(
-          height: 180,
-          width: double.infinity,
-          color: backgroundcolor,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.dashboard,
-                      size: headingsize,
-                      color: textcolor,
-                    ),
-                    RichText(
-                      text: const TextSpan(
-                        text: "Dashboard ",
-                        style: TextStyle(
-                          fontSize: headingsize1,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 76.0,
-                        ),
-                        child: Image.asset("images/logo.png"),
-                        // CircleAvatar(
-                        //   // radius: 40.0,
-                        //   backgroundImage: AssetImage(
-                        //     "images/logo.png",
-                        //   ),
-                        // ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 74.0, top: 12),
-                        child: Text(
-                          "School name",
-                          style: TextStyle(color: textcolor),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      //============================= form start.........
-      body: Stack(
-        fit: StackFit.expand,
+    return Material(
+      color: backgroundcolor3,
+      child: Stack(
+        //  fit: StackFit.loose,
         children: [
           Container(
-            color: backgroundcolor1,
+            // color: backgroundcolor1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -180,14 +60,14 @@ class _TeacherProfileState extends State<TeacherProfile> {
                 ),
               ),
               child: Stack(
-                fit: StackFit.expand,
+                // fit: StackFit.expand,
                 children: [
                   //==================================search bar
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
+                        padding: const EdgeInsets.fromLTRB(30, 20, 70, 0),
                         child: TextField(
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
@@ -226,11 +106,11 @@ class _TeacherProfileState extends State<TeacherProfile> {
                   ),
                   //============================new card
                   Padding(
-                    padding: const EdgeInsets.only(top: 80),
+                    padding: const EdgeInsets.only(top: 90),
                     child: Card(
                       color: backgroundcolor2,
                       margin: const EdgeInsets.only(
-                          left: 30, right: 70, bottom: 10, top: 20),
+                          left: 30, right: 70, bottom: 35, top: 20),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
@@ -682,6 +562,9 @@ class _TeacherProfileState extends State<TeacherProfile> {
                                           ),
                                         ],
                                       ),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
                                     ),
                                   ],
                                 ),

@@ -1,59 +1,19 @@
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:desktop_deshboard/class_routine/class_routine_constant.dart';
+import 'package:desktop_deshboard/account/account_constant.dart';
 import 'package:responsive_table/responsive_table.dart';
 
-class StudentRoutine extends StatefulWidget {
-  static const String id = "student-routine";
-  const StudentRoutine({Key? key}) : super(key: key);
+class FeeCollection extends StatefulWidget {
+  const FeeCollection({Key? key}) : super(key: key);
+  static const String id = "fee-collection";
 
   @override
-  State<StudentRoutine> createState() => _StudentRoutineState();
+  State<FeeCollection> createState() => _FeeCollectionState();
 }
 
-class _StudentRoutineState extends State<StudentRoutine> {
-  //===============================for student ROutine
-  //==========select class
-  String? selectedClassRoutine;
-  List<String> selectclassroutine = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-    'Item7',
-    'Item8',
-  ];
-  //==========select Day
-  String? selectedDay;
-  List<String> selectday = [
-    'I1',
-    'I2',
-    'I3',
-    'I4',
-    'I5',
-    'I6',
-    'I7',
-    'I8',
-  ];
-  //=================Select select time
-  String? selectedTime;
-  List<String> selecttime = [
-    'sh1',
-    'sh2',
-    'sh3',
-    'sh4',
-    'sh5',
-    'sh6',
-    'sh7',
-    'sh8',
-  ];
+class _FeeCollectionState extends State<FeeCollection> {
   //==========================
   late List<DatatableHeader> _headers;
 
@@ -94,6 +54,10 @@ class _StudentRoutineState extends State<StudentRoutine> {
         "cost": "20.00",
         "margin": "${i}0.20",
         "in_stock": "${i}0",
+        "alert": "5",
+        "received": [i + 20, 150],
+        "test2": "asa $i",
+        "test23": "ahsan a ahsan ahsan ahsan $i"
       });
       i++;
     }
@@ -205,6 +169,47 @@ class _StudentRoutineState extends State<StudentRoutine> {
           show: true,
           sortable: true,
           textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Alert",
+          value: "alert",
+          show: true,
+          sortable: true,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+        text: "Received",
+        value: "received",
+        textAlign: TextAlign.center,
+        show: true,
+        sortable: false,
+        sourceBuilder: (value, row) {
+          List list = List.from(value);
+          return Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 85,
+                  child: LinearProgressIndicator(
+                    value: list.first / list.last,
+                  ),
+                ),
+                Text("${list.first} of ${list.last}")
+              ],
+            ),
+          );
+        },
+      ),
+      DatatableHeader(
+          text: "Text2",
+          value: "test2",
+          show: true,
+          sortable: true,
+          textAlign: TextAlign.center),
+      DatatableHeader(
+          text: "Text23",
+          value: "test23",
+          show: true,
+          sortable: true,
+          textAlign: TextAlign.center),
     ];
 
     _initializeData();
@@ -218,9 +223,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
   //=========================
   @override
   Widget build(BuildContext context) {
-    return
-        //============================= form start.........
-        Material(
+    return Material(
       color: backgroundcolor4,
       child: Stack(
         //  fit: StackFit.expand,
@@ -235,7 +238,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                   child: Column(
                     children: const [
                       AutoSizeText(
-                        "Class Routine",
+                        "Fee Collection",
                         style: TextStyle(
                             color: headingcolor1,
                             fontSize: headingsize2,
@@ -276,12 +279,10 @@ class _StudentRoutineState extends State<StudentRoutine> {
                   const Padding(
                     padding: EdgeInsets.only(left: 50, top: 10),
                     child: Text(
-                      "home > students routine",
+                      "Home > Fee Collection",
                       style: TextStyle(fontSize: textsize, color: textcolor1),
                     ),
                   ),
-
-                  //=========================Row +2column
 
                   Padding(
                     padding: const EdgeInsets.only(
@@ -290,446 +291,8 @@ class _StudentRoutineState extends State<StudentRoutine> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //============ first inner card
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30, top: 20),
-                              child: Container(
-                                width: 273,
-                                height: 400,
-                                child: Card(
-                                  color: backgroundcolor3,
-                                  elevation: 6,
-
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
-                                  //============================form start
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      //====first line
-                                      const Center(
-                                        child: Text(
-                                          "Manage Students Routine",
-                                          style: TextStyle(
-                                            color: headingcolor1,
-                                            fontSize: textsize6,
-                                          ),
-                                        ),
-                                      ),
-                                      //===========divider line
-                                      const Divider(
-                                        color: line,
-                                        height: 2,
-                                      ),
-                                      //====form first input
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Subject Name",
-                                          style: TextStyle(fontSize: textsize5),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.fromLTRB(
-                                            20, 4, 20, 0),
-                                        child: TextField(
-                                          showCursor: false,
-                                          cursorColor: textcolor1,
-                                          decoration: InputDecoration(
-                                            fillColor: textcolor,
-                                            filled: true,
-                                            isDense: true,
-                                            contentPadding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 8),
-                                            enabledBorder: myinputborder(),
-                                            focusedBorder: myfocusborder(),
-                                          ),
-                                        ),
-                                      ),
-                                      //========form secend input
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Teacher Name",
-                                          style: TextStyle(fontSize: textsize5),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.fromLTRB(
-                                            20, 4, 20, 0),
-                                        child: TextField(
-                                          showCursor: false,
-                                          cursorColor: textcolor1,
-                                          decoration: InputDecoration(
-                                            fillColor: textcolor,
-                                            filled: true,
-                                            isDense: true,
-                                            contentPadding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 8),
-                                            enabledBorder: myinputborder(),
-                                            focusedBorder: myfocusborder(),
-                                          ),
-                                        ),
-                                      ),
-                                      //===========form third input
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Selcet Class",
-                                          style: TextStyle(fontSize: textsize5),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.fromLTRB(
-                                            20, 4, 20, 0),
-                                        child: DropdownButtonHideUnderline(
-                                          child: DropdownButton2(
-                                            isExpanded: true,
-                                            hint: Row(
-                                              children: const [
-                                                Expanded(
-                                                  child: Text(
-                                                    'Select class',
-                                                    style: TextStyle(
-                                                      fontSize: textsize5,
-                                                      color: textcolor1,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            items: selectclassroutine
-                                                .map((item) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style: const TextStyle(
-                                                          fontSize: textsize,
-                                                          color: textcolor1,
-                                                        ),
-                                                      ),
-                                                    ))
-                                                .toList(),
-                                            value: selectedClassRoutine,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                selectedClassRoutine =
-                                                    value as String;
-                                              });
-                                            },
-                                            buttonHeight: 32,
-                                            buttonWidth: 320,
-                                            buttonPadding:
-                                                const EdgeInsets.only(
-                                                    left: 14, right: 14),
-                                            buttonDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              border: Border.all(
-                                                color: boder1,
-                                              ),
-                                              color: textcolor,
-                                            ),
-                                            itemPadding: const EdgeInsets.only(
-                                                left: 14, right: 14),
-                                            dropdownWidth: 220,
-                                            dropdownMaxHeight: 150,
-                                            dropdownDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              color: textcolor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      //======form fourth input
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Select Day",
-                                          style: TextStyle(fontSize: textsize5),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.fromLTRB(
-                                            20, 4, 20, 0),
-                                        child: DropdownButtonHideUnderline(
-                                          child: DropdownButton2(
-                                            isExpanded: true,
-                                            hint: Row(
-                                              children: const [
-                                                Expanded(
-                                                  child: Text(
-                                                    'Select Day',
-                                                    style: TextStyle(
-                                                      fontSize: textsize5,
-                                                      color: textcolor1,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            items: selectday
-                                                .map((item) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style: const TextStyle(
-                                                          fontSize: textsize,
-                                                          color: textcolor1,
-                                                        ),
-                                                      ),
-                                                    ))
-                                                .toList(),
-                                            value: selectedDay,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                selectedDay = value as String;
-                                              });
-                                            },
-                                            buttonHeight: 32,
-                                            buttonWidth: 320,
-                                            buttonPadding:
-                                                const EdgeInsets.only(
-                                                    left: 14, right: 14),
-                                            buttonDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              border: Border.all(
-                                                color: boder1,
-                                              ),
-                                              color: textcolor,
-                                            ),
-                                            itemPadding: const EdgeInsets.only(
-                                                left: 14, right: 14),
-                                            dropdownWidth: 220,
-                                            dropdownMaxHeight: 150,
-                                            dropdownDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              color: textcolor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      //=====================form fifth input
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Select  Time",
-                                          style: TextStyle(fontSize: textsize5),
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.fromLTRB(
-                                            20, 4, 20, 0),
-                                        child: DropdownButtonHideUnderline(
-                                          child: DropdownButton2(
-                                            isExpanded: true,
-                                            hint: Row(
-                                              children: const [
-                                                Expanded(
-                                                  child: Text(
-                                                    'Select select time',
-                                                    style: TextStyle(
-                                                      fontSize: textsize5,
-                                                      color: textcolor1,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            items: selecttime
-                                                .map((item) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style: const TextStyle(
-                                                          fontSize: textsize,
-                                                          color: textcolor1,
-                                                        ),
-                                                      ),
-                                                    ))
-                                                .toList(),
-                                            value: selectedTime,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                selectedTime = value as String;
-                                              });
-                                            },
-                                            buttonHeight: 32,
-                                            buttonWidth: 320,
-                                            buttonPadding:
-                                                const EdgeInsets.only(
-                                                    left: 14, right: 14),
-                                            buttonDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              border: Border.all(
-                                                color: boder1,
-                                              ),
-                                              color: textcolor,
-                                            ),
-                                            itemPadding: const EdgeInsets.only(
-                                                left: 14, right: 14),
-                                            dropdownWidth: 220,
-                                            dropdownMaxHeight: 150,
-                                            dropdownDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              color: textcolor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      //=============================button
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 0),
-                                        child: Container(
-                                          width: 100,
-                                          height: 34,
-                                          child: FlatButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
-                                            ),
-                                            color: buttoncolor,
-                                            onPressed: () {},
-                                            child: const Text(
-                                              "Submit",
-                                              style: TextStyle(
-                                                  color: textcolor,
-                                                  fontSize: textsize1),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            //=========================second inner card
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 30, top: 20, bottom: 30),
-                              child: Container(
-                                width: 286,
-                                height: 124,
-                                child: Card(
-                                  color: backgroundcolor3,
-                                  elevation: 6,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      //=========first line
-                                      const Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 5, 0, 0),
-                                        child: Text(
-                                          "Add Routine File",
-                                          style: TextStyle(
-                                            color: textcolor2,
-                                            fontSize: textsize1,
-                                          ),
-                                        ),
-                                      ),
-                                      //===========divider line
-                                      const Divider(
-                                        color: line,
-                                        height: 1,
-                                      ),
-                                      //================text line
-                                      const Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(16, 5, 0, 0),
-                                        child: Text(
-                                          "Excel File Add Here:",
-                                          style: TextStyle(
-                                            color: textcolor1,
-                                            fontSize: textsize1,
-                                          ),
-                                        ),
-                                      ),
-                                      //=====================button
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 20),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              width: 80,
-                                              padding:
-                                                  EdgeInsets.only(left: 15),
-                                              child: FlatButton(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0)),
-                                                color: buttoncolor,
-                                                onPressed: () {},
-                                                child: const Text(
-                                                  "Add File",
-                                                  style: TextStyle(
-                                                      color: textcolor,
-                                                      fontSize: textsize2),
-                                                ),
-                                              ),
-                                            ),
-                                            const Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 10),
-                                              child: Text(
-                                                "No File Chosen",
-                                                style: TextStyle(
-                                                    fontSize: textsize3),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                         //========================second column show record
-                        //
+
                         Expanded(
                           child: SingleChildScrollView(
                             child: Column(
@@ -742,13 +305,6 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Student Routine",
-                                          style: TextStyle(fontSize: textsize4),
-                                        ),
-                                      ),
                                       const Spacer(),
 
                                       //======================first button
@@ -799,7 +355,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                               print("TextButton1");
                                             },
                                             child: const Text(
-                                              'Search By Day',
+                                              'Roll type here',
                                               style: TextStyle(
                                                   fontSize: textsize3),
                                             ),
@@ -857,7 +413,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                               print("TextButton1");
                                             },
                                             child: const Text(
-                                              'Search Class',
+                                              'Type section',
                                               style: TextStyle(
                                                   fontSize: textsize3),
                                             ),
@@ -915,7 +471,7 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                               print("TextButton1");
                                             },
                                             child: const Text(
-                                              'Search ',
+                                              'search ',
                                               style: TextStyle(
                                                   fontSize: textsize3),
                                             ),
@@ -925,13 +481,14 @@ class _StudentRoutineState extends State<StudentRoutine> {
                                     ],
                                   ),
                                 ),
-                                //==============show record
+                                //         //==============show record
                                 Container(
                                   margin: const EdgeInsets.only(
                                       left: 20, right: 20, top: 20),
                                   padding: const EdgeInsets.all(0),
                                   constraints: const BoxConstraints(),
                                   child: Card(
+                                    elevation: 0,
                                     margin: EdgeInsets.all(0),
                                     child: ResponsiveDatatable(
                                       headers: _headers,

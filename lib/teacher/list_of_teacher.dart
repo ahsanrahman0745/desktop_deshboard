@@ -10,7 +10,7 @@ import 'constant.dart';
 
 class ListOfTeacher extends StatefulWidget {
   const ListOfTeacher({Key? key}) : super(key: key);
-
+  static const String id = "list-of-teacher";
   @override
   State<ListOfTeacher> createState() => _ListOfTeacherState();
 }
@@ -224,142 +224,21 @@ class _ListOfTeacherState extends State<ListOfTeacher> {
 
   @override
   Widget build(BuildContext context) {
-    return AdminScaffold(
-      sideBar: SideBar(
-        //===== borderColor
-        borderColor: backgroundcolor,
-        //=====background color
-        backgroundColor: backgroundcolor,
-        //====text and fontsize
-        textStyle: const TextStyle(
-          color: textcolor,
-          fontSize: textsize1,
-        ),
-        iconColor: Colors.black,
-
-        items: const [
-          //=======teacher................
-          MenuItem(
-            title: 'Teacher',
-            children: [
-              MenuItem(
-                title: 'All Taecher',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Profile',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Add Teacher',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-          //====student..........
-          MenuItem(
-            title: 'Student',
-            children: [
-              MenuItem(
-                title: 'All Student',
-                icon: Icons.person_add_alt_1_outlined,
-                //  route: '/secondLevelItem1',
-              ),
-              MenuItem(
-                title: 'Student Details',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-              MenuItem(
-                title: 'Admit Form',
-                icon: Icons.person_add_alt_1_outlined,
-                //route: '/secondLevelItem2',
-              ),
-            ],
-          ),
-        ],
-        selectedRoute: '/',
-        onSelected: (item) {
-          if (item.route != null) {
-            Navigator.of(context).pushNamed(item.route!);
-          }
-        },
-        header: Container(
-          height: 180,
-          width: double.infinity,
-          color: backgroundcolor,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.dashboard,
-                      size: headingsize,
-                      color: textcolor,
-                    ),
-                    RichText(
-                      text: const TextSpan(
-                        text: "Dashboard ",
-                        style: TextStyle(
-                          fontSize: headingsize1,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 76.0,
-                        ),
-                        child: Image.asset("images/logo.png"),
-                        // CircleAvatar(
-                        //   // radius: 40.0,
-                        //   backgroundImage: AssetImage(
-                        //     "images/logo.png",
-                        //   ),
-                        // ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 74.0, top: 12),
-                        child: Text(
-                          "School name",
-                          style: TextStyle(color: textcolor),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      //==========================================start form here........
-      body: Stack(
-        fit: StackFit.expand,
+    return Material(
+      color: backgroundcolor3,
+      child: Stack(
         children: [
           Container(
-            color: backgroundcolor1,
+            //  color: backgroundcolor1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30.0, left: 50),
+                  padding: const EdgeInsets.only(top: 20.0, left: 50),
                   child: Column(
                     children: const [
                       AutoSizeText(
-                        "STUDENT",
+                        "Teacher",
                         style: TextStyle(
                             color: headingcolor1, fontSize: headingsize2),
                       )
@@ -371,7 +250,9 @@ class _ListOfTeacherState extends State<ListOfTeacher> {
                   child: Center(
                     child: Column(
                       children: const [
-                        Icon(Icons.print),
+                        Icon(
+                          Icons.print,
+                        ),
                       ],
                     ),
                   ),
@@ -379,6 +260,7 @@ class _ListOfTeacherState extends State<ListOfTeacher> {
               ],
             ),
           ),
+
           //==========================maint card start
           Padding(
             padding: EdgeInsets.only(top: 90),
@@ -394,15 +276,21 @@ class _ListOfTeacherState extends State<ListOfTeacher> {
                         // maxHeight: 700,
                         ),
                     child: Card(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
+                      ),
                       margin: EdgeInsets.all(0),
-                      // elevation: 1,
+                      elevation: 0,
                       // shadowColor: Colors.black,
                       // clipBehavior: Clip.none,
                       child: ResponsiveDatatable(
                         title: Row(
                           children: [
                             const SizedBox(
-                              width: 10,
+                              width: 20,
                             ),
                             //======================first button
                             SizedBox(
@@ -568,50 +456,54 @@ class _ListOfTeacherState extends State<ListOfTeacher> {
                         actions: [
                           //   if (_isSearch)
                           Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                isDense: true,
-                                // isCollapsed: true,
-                                // suffixIcon: const Icon(
-                                //   Icons.search_rounded,
-                                //   size: 38,
-                                //   color: Colors.black,
-                                // ),
-                                //  hintText: 'Search Student by name',
-                                hintStyle: const TextStyle(fontSize: 14),
-                                contentPadding: const EdgeInsets.fromLTRB(
-                                    20.0, 15.0, 20.0, 15.0),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(10),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  // isCollapsed: true,
+                                  // suffixIcon: const Icon(
+                                  //   Icons.search_rounded,
+                                  //   size: 38,
+                                  //   color: Colors.black,
+                                  // ),
+                                  //  hintText: 'Search Student by name',
+                                  hintStyle: const TextStyle(fontSize: 14),
+                                  contentPadding: const EdgeInsets.fromLTRB(
+                                      20.0, 15.0, 20.0, 15.0),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.black),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.black),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  hintText: 'Search Student by name ' +
+                                      _searchKey!
+                                          .replaceAll(
+                                              new RegExp('[\\W_]+'), ' ')
+                                          .toUpperCase(),
+                                  // prefixIcon: IconButton(
+                                  //     icon: Icon(Icons.cancel),
+                                  //     onPressed: () {
+                                  //       setState(() {
+                                  //         _isSearch = false;
+                                  //       });
+                                  //       _initializeData();
+                                  //     }),
+                                  suffixIcon: IconButton(
+                                      color: Colors.black,
+                                      // iconSize: 38,
+                                      icon: const Icon(Icons.search),
+                                      onPressed: () {}),
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                hintText: 'Search Student by name ' +
-                                    _searchKey!
-                                        .replaceAll(new RegExp('[\\W_]+'), ' ')
-                                        .toUpperCase(),
-                                // prefixIcon: IconButton(
-                                //     icon: Icon(Icons.cancel),
-                                //     onPressed: () {
-                                //       setState(() {
-                                //         _isSearch = false;
-                                //       });
-                                //       _initializeData();
-                                //     }),
-                                suffixIcon: IconButton(
-                                    color: Colors.black,
-                                    // iconSize: 38,
-                                    icon: const Icon(Icons.search),
-                                    onPressed: () {}),
+                                // onSubmitted: (value) {
+                                //   _filterData(value);
+                                // },
                               ),
-                              // onSubmitted: (value) {
-                              //   _filterData(value);
-                              // },
                             ),
                           ),
 

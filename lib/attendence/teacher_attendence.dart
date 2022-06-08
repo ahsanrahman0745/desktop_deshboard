@@ -1,24 +1,24 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 import 'package:desktop_deshboard/attendence/attendence_constant.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class StudentAttendence extends StatefulWidget {
-  const StudentAttendence({Key? key}) : super(key: key);
-  static const String id = "student-attendence";
+class TeacherAttendence extends StatefulWidget {
+  const TeacherAttendence({Key? key}) : super(key: key);
+  static const String id = "teacher-attendence";
 
   @override
-  State<StudentAttendence> createState() => _StudentAttendenceState();
+  State<TeacherAttendence> createState() => _TeacherAttendenceState();
 }
 
-class _StudentAttendenceState extends State<StudentAttendence> {
-  //===============================for student Attendence form
-  //==========Select class
-  String? selectedSelectclassA;
-  List<String> SelectclassA = [
+class _TeacherAttendenceState extends State<TeacherAttendence> {
+  //===============================for teacher Attendence form
+  //==========Select department
+  String? selectedSelectdepartment;
+  List<String> Selectdepartment = [
     'Item1',
     'Item2',
     'Item3',
@@ -28,9 +28,57 @@ class _StudentAttendenceState extends State<StudentAttendence> {
     'Item7',
     'Item8',
   ];
-  //=========select section
-  String? selectedselectsections;
-  List<String> selectsections = [
+  //=========select shift
+  String? selectedselectshift;
+  List<String> selectshift = [
+    'Im1',
+    'Im2',
+    'Im3',
+    'Im4',
+    'Im5',
+    'Im6',
+    'Im7',
+    'Im8',
+  ];
+  //===========select Teacher
+  String? selectedSelectTeacher;
+  List<String> SelectTeacher = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+  ];
+  //================Select Status
+  String? selectedSelectStatus;
+  List<String> SelectStatus = [
+    '1sh',
+    '2sh',
+    '3sh',
+    '4sh',
+    '5sh',
+    '6sh',
+    '7sh',
+    '8sh',
+  ];
+  //============second row of dropdown box.....
+  String? selectedSelectdepartment1;
+  List<String> Selectdepartment1 = [
+    'Item1',
+    'Item2',
+    'Item3',
+    'Item4',
+    'Item5',
+    'Item6',
+    'Item7',
+    'Item8',
+  ];
+  //=========select shift
+  String? selectedselectshift1;
+  List<String> selectshift1 = [
     'Im1',
     'Im2',
     'Im3',
@@ -41,8 +89,8 @@ class _StudentAttendenceState extends State<StudentAttendence> {
     'Im8',
   ];
   //===========select month
-  String? selectedselectmonth1;
-  List<String> selectmonth1 = [
+  String? selectedmonth;
+  List<String> month = [
     '1',
     '2',
     '3',
@@ -52,9 +100,9 @@ class _StudentAttendenceState extends State<StudentAttendence> {
     '7',
     '8',
   ];
-  //================session year
-  String? selectedsessionyear1;
-  List<String> sessionyear1 = [
+  //================Session Year
+  String? selectedSessionYear;
+  List<String> SessionYear = [
     '1sh',
     '2sh',
     '3sh',
@@ -64,9 +112,10 @@ class _StudentAttendenceState extends State<StudentAttendence> {
     '7sh',
     '8sh',
   ];
+
   @override
   Widget build(BuildContext context) {
-    final DataTableSource _data = MyData(context);
+    final DataTableSource _data = MyDataT(context);
     return Material(
       //============================= form start.........
       child: Stack(
@@ -98,6 +147,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
           Padding(
             padding: const EdgeInsets.only(top: 100),
             child: Card(
+              elevation: 0,
               margin: const EdgeInsets.all(0),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -115,7 +165,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                       Padding(
                         padding: EdgeInsets.only(left: 50, top: 20),
                         child: Text(
-                          "home > Student Attendence",
+                          "home > Teacher Attendence",
                           style:
                               TextStyle(fontSize: textsize, color: textcolor1),
                         ),
@@ -143,7 +193,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                           const Padding(
                             padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
                             child: Text(
-                              "Checkout Student Attendance",
+                              "Mark Teacher's Attendance",
                               style: TextStyle(
                                   color: textcolor2,
                                   fontSize: textsize4,
@@ -170,7 +220,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 30),
-                                        child: Text("Select class"),
+                                        child: Text("Select department"),
                                       ),
                                       Container(
                                         margin: const EdgeInsets.fromLTRB(
@@ -182,7 +232,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                               children: const [
                                                 Expanded(
                                                   child: Text(
-                                                    'Select class',
+                                                    'Select department',
                                                     style: TextStyle(
                                                       fontSize: textsize5,
                                                       color: textcolor1,
@@ -191,21 +241,22 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                                 ),
                                               ],
                                             ),
-                                            items: SelectclassA.map((item) =>
-                                                DropdownMenuItem<String>(
-                                                  value: item,
-                                                  child: Text(
-                                                    item,
-                                                    style: const TextStyle(
-                                                      fontSize: textsize,
-                                                      color: textcolor1,
-                                                    ),
-                                                  ),
-                                                )).toList(),
-                                            value: selectedSelectclassA,
+                                            items: Selectdepartment.map(
+                                                (item) =>
+                                                    DropdownMenuItem<String>(
+                                                      value: item,
+                                                      child: Text(
+                                                        item,
+                                                        style: const TextStyle(
+                                                          fontSize: textsize,
+                                                          color: textcolor1,
+                                                        ),
+                                                      ),
+                                                    )).toList(),
+                                            value: selectedSelectdepartment,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedSelectclassA =
+                                                selectedSelectdepartment =
                                                     value as String;
                                               });
                                             },
@@ -246,7 +297,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 30),
-                                        child: Text("Select Section"),
+                                        child: Text("Select Shift"),
                                       ),
                                       Container(
                                         margin: const EdgeInsets.fromLTRB(
@@ -258,7 +309,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                               children: const [
                                                 Expanded(
                                                   child: Text(
-                                                    'Select Section',
+                                                    'Select Shift',
                                                     style: TextStyle(
                                                       fontSize: textsize5,
                                                       color: textcolor1,
@@ -267,7 +318,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                                 ),
                                               ],
                                             ),
-                                            items: selectsections
+                                            items: selectshift
                                                 .map((item) =>
                                                     DropdownMenuItem<String>(
                                                       value: item,
@@ -280,10 +331,369 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                                       ),
                                                     ))
                                                 .toList(),
-                                            value: selectedselectsections,
+                                            value: selectedselectshift,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedselectsections =
+                                                selectedselectshift =
+                                                    value as String;
+                                              });
+                                            },
+                                            buttonHeight: 32,
+                                            buttonWidth: 210,
+                                            dropdownMaxHeight: 150,
+                                            buttonPadding:
+                                                const EdgeInsets.only(
+                                                    left: 14, right: 14),
+                                            buttonDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              border: Border.all(
+                                                color: Colors.black,
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
+                                            dropdownWidth: 210,
+                                            dropdownDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                //=======third
+                                Flexible(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 30),
+                                        child: Text("Select Teacher"),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.fromLTRB(
+                                            30, 4, 20, 0),
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton2(
+                                            isExpanded: true,
+                                            hint: Row(
+                                              children: const [
+                                                Expanded(
+                                                  child: Text(
+                                                    'Select Teacher',
+                                                    style: TextStyle(
+                                                      fontSize: textsize5,
+                                                      color: textcolor1,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            items: SelectTeacher.map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: textsize,
+                                                      color: textcolor1,
+                                                    ),
+                                                  ),
+                                                )).toList(),
+                                            value: selectedSelectTeacher,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                selectedSelectTeacher =
+                                                    value as String;
+                                              });
+                                            },
+                                            buttonHeight: 32,
+                                            buttonWidth: 210,
+                                            dropdownMaxHeight: 150,
+                                            buttonPadding:
+                                                const EdgeInsets.only(
+                                                    left: 14, right: 14),
+                                            buttonDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              border: Border.all(
+                                                color: Colors.black,
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
+                                            dropdownWidth: 210,
+                                            dropdownDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                //======fourth
+                                Flexible(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 20),
+                                        child: Text("Select Status"),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.fromLTRB(
+                                            20, 4, 0, 0),
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton2(
+                                            isExpanded: true,
+                                            hint: Row(
+                                              children: const [
+                                                Expanded(
+                                                  child: Text(
+                                                    'Select Status  ',
+                                                    style: TextStyle(
+                                                      fontSize: textsize5,
+                                                      color: textcolor1,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            items: SelectStatus.map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: textsize,
+                                                      color: textcolor1,
+                                                    ),
+                                                  ),
+                                                )).toList(),
+                                            value: selectedSelectStatus,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                selectedSelectStatus =
+                                                    value as String;
+                                              });
+                                            },
+                                            buttonHeight: 32,
+                                            buttonWidth: 210,
+                                            dropdownMaxHeight: 150,
+                                            buttonPadding:
+                                                const EdgeInsets.only(
+                                                    left: 14, right: 14),
+                                            buttonDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              border: Border.all(
+                                                color: Colors.black,
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
+                                            dropdownWidth: 210,
+                                            dropdownDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 100,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+//===========================
+//===========================second dropdown boxes
+//===========================
+                  Padding(
+                    padding: const EdgeInsets.only(top: 220),
+                    child: Card(
+                      elevation: 6,
+                      color: backgroundcolor3,
+                      margin: const EdgeInsets.only(
+                          left: 40, right: 40, bottom: 370, top: 20),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+
+                      //================================first heading
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
+                            child: Text(
+                              "Checkout Teacher's Attendance",
+                              style: TextStyle(
+                                  color: textcolor2,
+                                  fontSize: textsize4,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          //===========divider line
+                          const Divider(
+                            color: line,
+                            height: 1,
+                          ),
+                          //=====================second row of dropdown button
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                //======first
+                                Flexible(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 30),
+                                        child: Text("Select department"),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.fromLTRB(
+                                            30, 4, 20, 0),
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton2(
+                                            isExpanded: true,
+                                            hint: Row(
+                                              children: const [
+                                                Expanded(
+                                                  child: Text(
+                                                    'Select department',
+                                                    style: TextStyle(
+                                                      fontSize: textsize5,
+                                                      color: textcolor1,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            items: Selectdepartment1.map(
+                                                (item) =>
+                                                    DropdownMenuItem<String>(
+                                                      value: item,
+                                                      child: Text(
+                                                        item,
+                                                        style: const TextStyle(
+                                                          fontSize: textsize,
+                                                          color: textcolor1,
+                                                        ),
+                                                      ),
+                                                    )).toList(),
+                                            value: selectedSelectdepartment1,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                selectedSelectdepartment1 =
+                                                    value as String;
+                                              });
+                                            },
+                                            buttonHeight: 32,
+                                            buttonWidth: 210,
+                                            dropdownMaxHeight: 150,
+                                            buttonPadding:
+                                                const EdgeInsets.only(
+                                                    left: 14, right: 14),
+                                            buttonDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              border: Border.all(
+                                                color: Colors.black,
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                            itemPadding: const EdgeInsets.only(
+                                                left: 14, right: 14),
+                                            dropdownWidth: 210,
+                                            dropdownDecoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                //======second
+                                Flexible(
+                                  flex: 5,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 30),
+                                        child: Text("Select Shift"),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.fromLTRB(
+                                            30, 4, 20, 0),
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton2(
+                                            isExpanded: true,
+                                            hint: Row(
+                                              children: const [
+                                                Expanded(
+                                                  child: Text(
+                                                    'Select Shift',
+                                                    style: TextStyle(
+                                                      fontSize: textsize5,
+                                                      color: textcolor1,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            items: selectshift1
+                                                .map((item) =>
+                                                    DropdownMenuItem<String>(
+                                                      value: item,
+                                                      child: Text(
+                                                        item,
+                                                        style: const TextStyle(
+                                                          fontSize: textsize,
+                                                          color: textcolor1,
+                                                        ),
+                                                      ),
+                                                    ))
+                                                .toList(),
+                                            value: selectedselectshift1,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                selectedselectshift1 =
                                                     value as String;
                                               });
                                             },
@@ -345,7 +755,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                                 ),
                                               ],
                                             ),
-                                            items: selectmonth1
+                                            items: month
                                                 .map((item) =>
                                                     DropdownMenuItem<String>(
                                                       value: item,
@@ -358,11 +768,10 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                                       ),
                                                     ))
                                                 .toList(),
-                                            value: selectedselectmonth1,
+                                            value: selectedmonth,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedselectmonth1 =
-                                                    value as String;
+                                                selectedmonth = value as String;
                                               });
                                             },
                                             buttonHeight: 32,
@@ -402,7 +811,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 20),
-                                        child: Text("Session Year "),
+                                        child: Text("Session Year"),
                                       ),
                                       Container(
                                         margin: const EdgeInsets.fromLTRB(
@@ -414,7 +823,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                               children: const [
                                                 Expanded(
                                                   child: Text(
-                                                    'Session Year ',
+                                                    'Session Year  ',
                                                     style: TextStyle(
                                                       fontSize: textsize5,
                                                       color: textcolor1,
@@ -423,23 +832,21 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                                                 ),
                                               ],
                                             ),
-                                            items: sessionyear1
-                                                .map((item) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style: const TextStyle(
-                                                          fontSize: textsize,
-                                                          color: textcolor1,
-                                                        ),
-                                                      ),
-                                                    ))
-                                                .toList(),
-                                            value: selectedsessionyear1,
+                                            items: SessionYear.map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: textsize,
+                                                      color: textcolor1,
+                                                    ),
+                                                  ),
+                                                )).toList(),
+                                            value: selectedSessionYear,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedsessionyear1 =
+                                                selectedSessionYear =
                                                     value as String;
                                               });
                                             },
@@ -481,9 +888,10 @@ class _StudentAttendenceState extends State<StudentAttendence> {
                       ),
                     ),
                   ),
+
                   //======================Attendance calender
                   Padding(
-                    padding: const EdgeInsets.only(left: 30, top: 230),
+                    padding: const EdgeInsets.only(left: 30, top: 400),
                     child: Flex(
                       direction: Axis.vertical,
                       children: [
@@ -612,7 +1020,7 @@ class _StudentAttendenceState extends State<StudentAttendence> {
 }
 
 // The "soruce" of the table
-class MyData extends DataTableSource {
+class MyDataT extends DataTableSource {
   // Generate some made-up data
   BuildContext? context;
   late final List<Map<String, dynamic>> _data22;
@@ -655,7 +1063,7 @@ class MyData extends DataTableSource {
             "31": "s",
           });
 
-  MyData(BuildContext context) {
+  MyDataT(BuildContext context) {
     this.context = context;
   }
 

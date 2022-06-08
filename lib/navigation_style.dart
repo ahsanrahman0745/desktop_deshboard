@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-// Colors that we use in add class constant
+// Colors that we use in side bar
 const backgroundcolor = Color(0xff396EB0);
 const backgroundcolor1 = Color(0xffE9E9E9);
 const backgroundcolor2 = Color(0xffC3E6F5);
-const backgroundcolor3 = Color(0xffE9E9E9);
 
 const textcolor = Color(0xffffffff);
 const textcolor1 = Color(0xff000000);
@@ -29,4 +28,3 @@ const double textsize5 = 10;
 const double headingsize = 40;
 const double headingsize1 = 22;
 const double headingsize2 = 30;
-const double headingsize3 = 48;
